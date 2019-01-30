@@ -15,6 +15,6 @@ By Prasanna Raj Mallipudi
 - `22` is Port by Default,Later we need to Change `2200`.
 
 #### 2: Update and upgrade installed packages
-` - sudo apt-get update
+  - sudo apt-get update
   - sudo apt-get upgrade
-  - sudo apt-get install unattended-upgrades`
+  - sudo apt-get install unattended-upgrades

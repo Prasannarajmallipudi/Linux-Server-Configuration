@@ -34,10 +34,28 @@ By Prasanna Raj Mallipudi
 
  - Configure the default firewall allow incoming connections for `SSH (port 2200)` , `HTTP (port 80)` and `NTP (port 123)`
  
-   `sudo ufw status                 
+   `sudo ufw status`                
    `sudo ufw default deny incoming`   
-   `sudo ufw default allow outgoing  
-   `sudo ufw allow 2200/tcp          
-   `sudo ufw allow www               
-   `sudo ufw allow 123/udp           
-   `sudo ufw deny 22                
+   `sudo ufw default allow outgoing`  
+   `sudo ufw allow 2200/tcp`          
+   `sudo ufw allow www`               
+   `sudo ufw allow 123/udp`           
+   `sudo ufw deny 22`
+  
+  - `sudo ufw enable`
+  - After Proceed Option Y/N - Y
+  - `sudo ufw status`
+```  
+Status: active
+
+To                         Action      From
+--                         ------      ----
+2200/tcp                   ALLOW       Anywhere                  
+80/tcp                     ALLOW       Anywhere                  
+123/udp                    ALLOW       Anywhere                  
+22                         DENY        Anywhere                  
+2200/tcp (v6)              ALLOW       Anywhere (v6)             
+80/tcp (v6)                ALLOW       Anywhere (v6)             
+123/udp (v6)               ALLOW       Anywhere (v6)             
+22 (v6)                    DENY        Anywhere (v6)
+```

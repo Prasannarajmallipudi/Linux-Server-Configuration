@@ -59,3 +59,40 @@ To                         Action      From
 123/udp (v6)               ALLOW       Anywhere (v6)             
 22 (v6)                    DENY        Anywhere (v6)
 ```
+
+#### 5: Create a ``New User`` account named `grader`
+
+ - While logged in as ubuntu, add user: sudo adduser grader
+ - Enter a password
+ - Edits the sudoers file: `sudo visudo`
+   ``root    ALL=(ALL:ALL) ALL``
+ 
+ - add a new line to give sudo privileges to grader user
+   ```
+   root    ALL=(ALL:ALL) ALL
+   grader  ALL=(ALL:ALL) ALL
+   ```
+ - Save and exit using ctrl+x and confirm with Y.
+ 
+ - Run su - grader, enter the password
+ 
+#### 6: Create an SSH key pair for grader
+
+- create .ssh folder by mkdir /home/grader/.ssh
+- su grader
+- RUN this command `cp /home/ubuntu/.ssh/authorized_keys /home/grader/.ssh/authorized_keys`
+- change Ownership ``chown grader.grader /home/grader/.ssh``
+- `usermod -aG sudo grader`
+- change permissions for .ssh folder ``chmod 0700 /home/grader/.ssh/``, for authorized_keys ``chmod 644 authorized_keys``
+- Check in ``vi /etc/ssh/sshd_config`` file if `PermitRootLogin is set to No`
+- Restart SSH: `sudo service ssh restart`
+- grader account Working or Not by RUNNING this command : `ssh -i camcatalog_30_01_2019.pem -p 2200 ubuntu@52.202.47.66`
+- Configure the local timezone to UTC Logged On grader Account
+- TIME ZONE: ``sudo dpkg-reconfigure tzdata``. Choose time zone UTC
+
+####  Deploying the project Steps
+
+
+
+ 
+ 

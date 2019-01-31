@@ -80,7 +80,7 @@ To                         Action      From
 
 - create .ssh folder by mkdir /home/grader/.ssh
 - su grader
-- RUN this command `cp /home/ubuntu/.ssh/authorized_keys /home/grader/.ssh/authorized_keys`
+- RUN this command `sudo cp /home/ubuntu/.ssh/authorized_keys /home/grader/.ssh/authorized_keys`
 - change Ownership ``chown grader.grader /home/grader/.ssh``
 - `usermod -aG sudo grader`
 - change permissions for .ssh folder ``chmod 0700 /home/grader/.ssh/``, for authorized_keys ``chmod 644 authorized_keys``

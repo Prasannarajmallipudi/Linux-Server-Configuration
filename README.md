@@ -82,7 +82,8 @@ To                         Action      From
 - su grader
 - RUN this command `sudo cp /home/ubuntu/.ssh/authorized_keys /home/grader/.ssh/authorized_keys`
 - change Ownership ``chown grader.grader /home/grader/.ssh``
-- `usermod -aG sudo grader`
+- `sudo su` and goto root directorie after next command
+- sudo Group add `usermod -aG sudo grader`
 - change permissions for .ssh folder ``chmod 0700 /home/grader/.ssh/``, for authorized_keys ``chmod 644 authorized_keys``
 - Check in ``vi /etc/ssh/sshd_config`` file if `PermitRootLogin is set to No`
 - Restart SSH: `sudo service ssh restart`

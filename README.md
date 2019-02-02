@@ -21,6 +21,7 @@ Hosted site Url http://3.90.89.13.xip.io/
   - sudo apt-get update
   - sudo apt-get upgrade
   - sudo apt-get install unattended-upgrades
+  - sudo apt-get dist-upgrade
 
 #### 3. Change SSH port from 22 to 2200
 
@@ -217,10 +218,12 @@ The following prompt will be returned:
 ```
 sudo apt-get update
 sudo apt-get upgrade
-
+sudo apt-get dist-upgrade
+```
 
 #### Launch the Web Application
- 
+``` 
  Open your browser to : (http://3.90.89.13.xip.io)
  Open your browser to : (http://ec2-3-90-89-13.compute-1.amazonaws.com)
  
+```

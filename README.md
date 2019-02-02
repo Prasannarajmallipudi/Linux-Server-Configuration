@@ -99,6 +99,23 @@ To                         Action      From
    `sudo apt-get install libapache2-mod-wsgi-py3`
 - Enable mod_wsgi using: `sudo a2enmod wsgi`
 
+#### Setting up your Google Oauth2
+  Login to your developer console and select your project and edit OAuth details(Configuration) as following
+```
+Javascript origin http://ip.xip.io
+
+redirect URI
+
+http://ip.xip.io\login
+
+http://ip.xip.io\gconnect
+
+http://ip.xip.io\callback
+
+xip.io is a free DNS which will be the same as using IP address
+```
+- After download the client_secrets.json file.If you usese the data copy and paste
+
 #### Install and configure PostgreSQL
 ```
 - sudo apt-get install libpq-dev python-dev
@@ -117,7 +134,7 @@ To                         Action      From
 ```
 - Logged in as `grader`, install git: `sudo apt-get install git`
 
--Clone and setup the Item Catalog project from the GitHub repository
+- Clone and setup the Item Catalog project from the GitHub repository
 ```
 - While logged in as grader,
 - From the /var/www directory, Clone the catalog project:
@@ -191,35 +208,13 @@ The following prompt will be returned:
   `service apache2 reload`
 - Reload Apache: `sudo service apache2 reload`
 
-#### Setting up your Google Oauth2
-  Login to your developer console and select your project and edit OAuth details(Configuration) as following
-```
-Javascript origin http://ip.xip.io
 
-redirect URI
-
-http://ip.xip.io\login
-
-http://ip.xip.io\gconnect
-
-http://ip.xip.io\callback
-
-xip.io is a free DNS which will be the same as using IP address
-```
 #### Final Step
 - Security Updates and package updates Try this commands
 ```
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get dist-upgrade
-```
-After run the commands ALL Packages and Security Upadates UPDATED   
-0 packages can be updated.
-0 updates are security updates.
 
-- Restart your `apache2 server`
-
- ``sudo service apache2 restart``
 
 #### Launch the Web Application
  

@@ -226,5 +226,6 @@ sudo apt-get dist-upgrade
  Open your browser to : (http://3.90.89.13.xip.io)
  Open your browser to : (http://ec2-3-90-89-13.compute-1.amazonaws.com)
  
-`Special Thanks`::- SkBadulla [I'm an inline-style link] and  SriramTalasila  for a very helpful READMEs in Linux Server Configuration...... :) 
+`Special Thanks`::-  [SkBadulla] and  [SriramTalasila]  for a very helpful READMEs in Linux Server Configuration...... :) 
+`Very Special Thanku`::Online Resources(Udacity,Stack Overflow,Google,Youtube,..........)
  

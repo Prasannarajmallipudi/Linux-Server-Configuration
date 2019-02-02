@@ -9,9 +9,9 @@ By Prasanna Raj Mallipudi
 
 - Login to aws.amazon.com and login to default user (ubuntu)
 - Choose EC2 and Launch Instance.
-- Check for instance `IPv4 public IP - 52.202.47.66`
+- Check for instance `IPv4 public IP - 3.90.89.13`
   we can download a `.pem File` and connect with following command
-- `ssh -i camcatalog_30_01_2019.pem ubuntu@52.202.47.66`
+- `ssh -i linux_31.pem ubuntu@3.90.89.13`
 - `22` is Port by Default,Later we need to Change `2200`.
 
 #### 2: Update and upgrade installed packages
@@ -28,7 +28,7 @@ By Prasanna Raj Mallipudi
  - Change inbound rules in Amazon EC2
  - Type : Custom TCP Rule as `2200`
  - To check port 2200: Working or Not
- - `ssh -i camcatalog_30_01_2019.pem -p 2200 ubuntu@52.202.47.66`
+ - `ssh -i linux_31.pem -p 2200 ubuntu@3.90.89.13`
  
 #### 4: Configure Firewall (UFW)
 
@@ -87,13 +87,142 @@ To                         Action      From
 - change permissions for .ssh folder ``chmod 0700 /home/grader/.ssh/``, for authorized_keys ``chmod 644 authorized_keys``
 - Check in ``vi /etc/ssh/sshd_config`` file if `PermitRootLogin is set to No`
 - Restart SSH: `sudo service ssh restart`
-- grader account Working or Not by RUNNING this command : `ssh -i camcatalog_30_01_2019.pem -p 2200 ubuntu@52.202.47.66`
+- grader account Working or Not by RUNNING this command : `ssh -i linux_31.pem -p 2200 ubuntu@3.90.89.13`
 - Configure the local timezone to UTC Logged On grader Account
 - TIME ZONE: ``sudo dpkg-reconfigure tzdata``. Choose time zone UTC
 
 ####  Deploying the project Steps
+- logged in as grader, install Apache: `sudo apt-get install apache2`
+- Enter `public IP` of the `Amazon EC2` instance into browser(Installation process sucess or not)
+  --- If sucess DIsplay the APACHE PAGE
+- My project is built with Python 3. So, I need to install the Python 3 mod_wsgi package:
+   `sudo apt-get install libapache2-mod-wsgi-py3`
+- Enable mod_wsgi using: `sudo a2enmod wsgi`
 
+#### Install and configure PostgreSQL
+```
+- sudo apt-get install libpq-dev python-dev
+- sudo apt-get install postgresql postgresql-contrib
+- sudo su - postgres
+- psql
+- CREATE USER catalog WITH PASSWORD 'catalog';
+- ALTER USER catalog CREATEDB;
+- CREATE DATABASE catalog WITH OWNER catalog;
+- \c catalog
+- REVOKE ALL ON SCHEMA public FROM public;
+- GRANT ALL ON SCHEMA public TO catalog;
+- \q
+- exit
+- Switch back to the grader user: exit
+```
+- Logged in as `grader`, install git: `sudo apt-get install git`
 
+-Clone and setup the Item Catalog project from the GitHub repository
+```
+- While logged in as grader,
+- From the /var/www directory, Clone the catalog project:
+- sudo git clone `https://github.com/username/catalog.git`
+- Change the ownership of the catalog directory to grader using: sudo chown -R grader:grader catalog/.
+- Change to the `/var/www/catalog/catalog` directory.
+- Rename the mainpage.py file to __init__.py using: mv mainpage.py __init__.py.
+- We need to change `sqlite` to `postgresql` create_engine in __init__.py,database_setup.py and sample_database.py
+- Reffered from stack overflow
+```
+``
+ #engine = create_engine("sqlite:///catalog.db")
+ engine = create_engine('postgresql://catalog:catalog@localhost/catalog')
+``
+#### Configure and Enable a New Virtual Host
 
+sudo nano /etc/apache2/sites-available/FlaskApp.conf
+
+```
+<VirtualHost *:80>
+    ServerName 54.161.86.157.xip.io
+    ServerAlias ec2-54-161-86-157.compute-1.amazonaws.com
+    ServerAdmin ubuntu@54.210.140.47
+    WSGIDaemonProcess catalog python-path=/var/www/catalog:/var/www/catalog/catalog/venv3/lib/python3.6/site-packages
+    WSGIProcessGroup catalog
+    WSGIScriptAlias / /var/www/catalog/catalog.wsgi
+    <Directory /var/www/catalog/catalog/>
+        Order allow,deny
+        Allow from all
+    </Directory>
+    Alias /static /var/www/catalog/catalog/static
+    <Directory /var/www/catalog/catalog/static/>
+        Order allow,deny
+        Allow from all
+    </Directory>
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    LogLevel warn
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+
+```
+- Enable the virtual host `sudo a2ensite catalog`
+- Enabling site `catalog`. To activate the new configuration
+- You need to run: `service apache2 reload`
+#### Set up the Flask application
+- Create `/var/www/catalog/catalog.wsgi` file add the following lines:
+```
+  import sys
+  import logging
+  logging.basicConfig(stream=sys.stderr)
+  sys.path.insert(0, "/var/www/catalog/")
+  from catalog import app as application
+  application.secret_key = 'supersecretkey'
+```
+- Restart Apache: sudo service apache2 restart.
+
+- From the `/var/www/catalog/catalog/` directory
+- Activate the virtual environment: `. venv3/bin/activate`
+
+`Run`: `python db_setup.py`
+
+- Deactivate the virtual environment: `deactivate`
+
+#### Disable the default Apache site
+- Disable the default Apache site: `sudo a2dissite 000-default.conf`
+
+The following prompt will be returned:
+
+`Site 000-default disabled`
+- To activate the new configuration, you need to run:
+  `service apache2 reload`
+- Reload Apache: `sudo service apache2 reload`
+
+#### Setting up your Google Oauth2
+  Login to your developer console and select your project and edit OAuth details(Configuration) as following
+```
+Javascript origin http://ip.xip.io
+
+redirect URI
+
+http://ip.xip.io\login
+
+http://ip.xip.io\gconnect
+
+http://ip.xip.io\callback
+
+xip.io is a free DNS which will be the same as using IP address
+```
+#### Final Step
+- Security Updates and package updates Try this commands
+```
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get dist-upgrade
+```
+After run the commands ALL Packages and Security Upadates UPDATED   
+0 packages can be updated.
+0 updates are security updates.
+
+- Restart your `apache2 server`
+
+ ``sudo service apache2 restart``
+
+#### Launch the Web Application
  
+ Open your browser to I'm an inline-style link](http://3.90.89.13.xip.io)
+ Open your browser to I'm an inline-style link](http://ec2-3-90-89-13.compute-1.amazonaws.com)
  

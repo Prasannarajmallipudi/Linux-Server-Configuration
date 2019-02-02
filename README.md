@@ -1,7 +1,10 @@
 ## Linux-Server-Configuration
 By Prasanna Raj Mallipudi
 
-## Get a server
+### Server Details
+Server IP Address 3.90.89.13
+
+Hosted site Url http://3.90.89.13.xip.io/
 
 ### Steps
 

@@ -223,6 +223,6 @@ After run the commands ALL Packages and Security Upadates UPDATED
 
 #### Launch the Web Application
  
- Open your browser to I'm an inline-style link](http://3.90.89.13.xip.io)
- Open your browser to I'm an inline-style link](http://ec2-3-90-89-13.compute-1.amazonaws.com)
+ Open your browser to : (http://3.90.89.13.xip.io)
+ Open your browser to : (http://ec2-3-90-89-13.compute-1.amazonaws.com)
  

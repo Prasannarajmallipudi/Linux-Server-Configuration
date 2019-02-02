@@ -222,8 +222,7 @@ sudo apt-get dist-upgrade
 ```
 
 #### Launch the Web Application
-``` 
+ 
  Open your browser to : (http://3.90.89.13.xip.io)
  Open your browser to : (http://ec2-3-90-89-13.compute-1.amazonaws.com)
  
-```

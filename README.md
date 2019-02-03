@@ -6,6 +6,37 @@ Server IP Address 3.90.89.13
 
 Hosted site Url http://3.90.89.13.xip.io/
 
+#### Private Key for the `grader` user
+
+```
+-----BEGIN RSA PRIVATE KEY-----
+MIIEogIBAAKCAQEAv4FHuIMHLkunok/vJ23kJ6uiOr8ktKcwjvR4nfCG6hTMoJnurHDCEUB/isSL
++Vq40JNfcYA3he+3qsHxsXfn9Zpe3zU58x7LtUZ7XVj/KPI2+UxdOZAZ2vEkJbS54T05fP26WBuV
+T0wJPb5/aAHucOjxyinkfSTOqpud0JG4tHNlzXeBcQmuAmXuNllhZIxXgITGOgP8WtIQFcTlajq9
+UrYojnUGECRtJ3uM36zvXnOzz+tt3twT7DGe94t4MA/PPpC3F8ijow/tiHyRWs169ON0rYAb3BOk
+K7n6UwzeIbU18X9QunB/fQHrB9ZJsmN64pGsjzrLEU0CGtbXoz2zWQIDAQABAoIBAAUU3h1URL2C
+vmj9LABk1xgCYuSiK8wrX4t7izPNrRbLBH8CdqXWvB+PEZNSEdDFCoBmWLL/Tvnb2YjLaqll4B7R
+QNE1bVs5JvihbSaV9PdWLgVBdHvRig4YNfhWKlSCtmLNrMMnwDeBcgFUa7cLzhLq63eM0wZLErzO
+MkrVgwwus/QVWXgqFnAhfo+3k6vJi/THyl2BimB4p3l2oKJmmxhCUAraNOf/JrLXJcqNJM3xDsl5
+IU+HnTaKo5SkhCsaOVoAoF2uTng++W672QMu053OWEinKrk/OWByRxt7VG6UH7lSIWWNGpAIMZo+
+4/C6R7WJk1A8p4Om/ALA4dJ5nAECgYEA5MRmyG8qPEMhTmgz0P42tX4yBlwxApONhyXss1Xf6ARk
+BuJ7kanogVjimdAD6T5wNLu1MLEYkkAxS7QNF9SwpSS+jUerI53FLOFMzfcwrdFKlNHmUqwIKXn4
+V7DLL3xg1NQ3sLDma8/VpzIaDVu+esoP4gnNVdLbYKQBW7GeR9kCgYEA1k1Tn1EjOE1736npl486
+JGPQcj4dL/NHfLN5FTjT6jrUOMJ2B9/4GghTqtMqhGtn7yz0nVuOshTWWiQfma2a3YSNXI42gPhF
+pcGkr6iH7Uj+lYQ8/Mw+Uo3jQ92ErQo8C4TwE39huWqFrQavG0WuzJlGVvz3ucyTifLy13TfF4EC
+gYBqw+acQJVbjpDqwOL99MafqYe7RCdzZl2051Qy1i8rX3E3bVfyQXPLeio3UseggY1obvo/AUfQ
+abkX9a3uo0rVp/JuiTYr5yPwsC1iKq1DUdwW3Gc7yiH9CXmHo3EQdmHSskBTbBv90P+LimxyM5EQ
+SWFkQuLb3Q6ZabFgk+Kk8QKBgGTxa5BB0cs1hEHocSV4y7RUZ91IMMtjVqsAhupeKEPOjiRmRN6U
+uvLYNUDj0sUpKn3YuShd9isf8Y/oMBJdWfM5+rQ8MKQzTesz+XTcd5pnpbOb5HZXZovQVdqjv1ka
+1wm+Bq/Icqm56VmFKno4KowpLp7O7YlRObXjAExIusUBAoGAP+Sq19AZeMWcQ4I9t6YcxDKm96zL
+zBrfk4WOoui9f6r53ysdcM37/XYEjacB9HzexnnlishnW5qR0SG5pVDsSZEuEJ/cOX4KgvmP5iD/
+CfC4WK5lByYiZi77vVvmZy8VX1c7Y3VmgtzyR+g/yOsU0HV7km8lm8LjQCzdiuKNj4g=
+-----END RSA PRIVATE KEY-----
+
+```
+#### grader `password`
+grader
+
 ### Steps
 
 #### 1: New Ubuntu Linux server instance on Amazon EC2
@@ -91,7 +122,7 @@ To                         Action      From
 - change permissions for .ssh folder ``chmod 0700 /home/grader/.ssh/``, for authorized_keys ``chmod 644 authorized_keys``
 - Check in ``vi /etc/ssh/sshd_config`` file if `PermitRootLogin is set to No`
 - Restart SSH: `sudo service ssh restart`
-- grader account Working or Not by RUNNING this command : `ssh -i linux_31.pem -p 2200 ubuntu@3.90.89.13`
+- grader account Working or Not by RUNNING this command : ``ssh -i linux_31.pem -p 2200 grader@3.90.89.13``
 - Configure the local timezone to UTC Logged On grader Account
 - TIME ZONE: ``sudo dpkg-reconfigure tzdata``. Choose time zone UTC
 
@@ -107,14 +138,14 @@ To                         Action      From
   Login to your developer console and select your project and edit OAuth details(Configuration) as following
 ```
 Javascript origin http://ip.xip.io
-
+                  
 redirect URI
 
-http://ip.xip.io\login
+http://ip.xip.io/login
 
-http://ip.xip.io\gconnect
+http://ip.xip.io/gconnect
 
-http://ip.xip.io\callback
+http://ip.xip.io/callback
 
 xip.io is a free DNS which will be the same as using IP address
 ```

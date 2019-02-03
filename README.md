@@ -58,6 +58,8 @@ grader
 
  - Edit File: `sudo vi /etc/ssh/sshd_config`
  - Change Port number 22 to 2200
+ - PubkeyAuthentication yes
+ - PasswordAuthentication no
  - Save and exit using esc and confirm with :wq
  - Restart: `sudo service ssh restart`
  - Change inbound rules in Amazon EC2

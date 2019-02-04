@@ -7,8 +7,8 @@ Server IP Address 3.90.89.13
 Hosted site Url http://3.90.89.13.xip.io/
 
 #### Private Key for the `grader` user
-
-```save private key provided in your local machine : ```
+ 
+If Connect the RSA Private Key, Open this -->  : [LINK](https://raw.githubusercontent.com/Prasannarajmallipudi/Linux-Server-Configuration/master/Private%20Key(.pem)
 
 #### grader `password`
 grader

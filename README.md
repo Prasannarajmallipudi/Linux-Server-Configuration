@@ -207,6 +207,16 @@ sudo nano /etc/apache2/sites-available/FlaskApp.conf
 - From the `/var/www/catalog/catalog/` directory
 - Activate the virtual environment: `. venv3/bin/activate`
 
+```
+Install the following dependencies:
+pip install httplib2
+pip install requests
+pip install --upgrade oauth2client
+pip install sqlalchemy
+pip install flask
+sudo apt-get install libpq-dev
+pip install psycopg2-binary```
+
 `Run`: `python db_setup.py`
 
 - Deactivate the virtual environment: `deactivate`
